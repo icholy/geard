@@ -26,8 +26,6 @@ import (
 )
 
 func main() {
-	var err error
-
 	nfq, err := netfilter.NewNFQueue(0, 100, netfilter.NF_DEFAULT_PACKET_SIZE)
 	if err != nil {
 		log.Fatal(err)
