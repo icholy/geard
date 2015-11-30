@@ -1,7 +1,7 @@
 go-netfilter-queue
 ==================
 
-Go bindings for libnetfilter_queue
+Go bindings for `libnetfilter_queue`
 
 This library provides access to packets in the IPTables netfilter queue (NFQUEUE).
 The `libnetfilter_queue` library is part of the [Netfilter project](http://netfilter.org/projects/libnetfilter_queue/).
@@ -21,8 +21,9 @@ package main
 
 import (
         "fmt"
-        "github.com/openshift/geard/pkg/go-netfilter-queue"
         "os"
+
+        "github.com/icholy/netfilter"
 )
 
 func main() {
