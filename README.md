@@ -37,12 +37,9 @@ func main() {
 	defer nfq.Close()
 	packets := nfq.GetPackets()
 
-	for true {
-		select {
-		case p := <-packets:
-			fmt.Println(p.Packet)
-			p.SetVerdict(netfilter.NF_ACCEPT)
-		}
+	for p := range packets {
+		fmt.Println(p.Packet)
+		p.SetVerdict(netfilter.NF_ACCEPT)
 	}
 }
 ```
