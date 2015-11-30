@@ -20,8 +20,7 @@ You can then use go-netfilter-queue to inspect the packets:
 package main
 
 import (
-	"fmt"
-	"os"
+	"log"
 
 	"github.com/icholy/netfilter"
 )
@@ -31,14 +30,12 @@ func main() {
 
 	nfq, err := netfilter.NewNFQueue(0, 100, netfilter.NF_DEFAULT_PACKET_SIZE)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Fatal(err)
 	}
 	defer nfq.Close()
-	packets := nfq.GetPackets()
 
-	for p := range packets {
-		fmt.Println(p.Packet)
+	for p := range nfq.GetPackets() {
+		log.Println(p.Packet)
 		p.SetVerdict(netfilter.NF_ACCEPT)
 	}
 }
